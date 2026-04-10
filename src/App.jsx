@@ -937,8 +937,8 @@ export default function App() {
         <a href={`${API}/docs`} target="_blank" rel="noreferrer" style={{fontSize:13,color:"#74c69d",textDecoration:"none"}}>API docs</a>
         <a href="https://github.com/manuparamesh/packetwatch-api" target="_blank" rel="noreferrer" style={{fontSize:13,color:"#74c69d",textDecoration:"none"}}>GitHub</a>
         <a href="#about" style={{fontSize:13,color:"#74c69d",textDecoration:"none"}}>About</a>
-        <button onClick={()=>setScreen("privacy")} style={{fontSize:13,color:"#74c69d",background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"inherit"}}>Privacy Policy</button>
-        <button onClick={()=>setScreen("terms")} style={{fontSize:13,color:"#74c69d",background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"inherit"}}>Terms of Service</button>
+        <a href="/privacy" style={{fontSize:13,color:"#74c69d",textDecoration:"none"}} onClick={e=>{e.preventDefault();setScreen("privacy")}}>Privacy Policy</a>
+        <a href="/terms" style={{fontSize:13,color:"#74c69d",textDecoration:"none"}} onClick={e=>{e.preventDefault();setScreen("terms")}}>Terms of Service</a>
       </div>
       <p style={{fontSize:12,color:"#52b788",margin:0}}>Open source · Built by Manu Paramesh &amp; Roopa Narayanan · Making food delivery plastic visible</p>
     </footer>
