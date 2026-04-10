@@ -12,12 +12,32 @@ const CATS = {
   middle_eastern:"Middle Eastern", western_casual:"Western Casual"
 }
 const PLATFORMS_BY_COUNTRY = {
-  "IN":{label:"🇮🇳 India",platforms:[{id:"zomato",label:"Zomato",color:"#e23744"},{id:"swiggy",label:"Swiggy",color:"#fc8019",soon:true}]},
-  "US":{label:"🇺🇸 United States",platforms:[{id:"doordash",label:"DoorDash",color:"#ff3008"},{id:"uber_eats",label:"Uber Eats",color:"#06C167"}]},
-  "GB":{label:"🇬🇧 United Kingdom",platforms:[{id:"deliveroo",label:"Deliveroo",color:"#00CCBC"},{id:"uber_eats",label:"Uber Eats",color:"#06C167"}]},
-  "EU":{label:"🇪🇺 Europe",platforms:[{id:"bolt_food",label:"Bolt Food",color:"#34D186"},{id:"deliveroo",label:"Deliveroo",color:"#00CCBC"}]},
-  "AE":{label:"🇦🇪 Middle East",platforms:[{id:"talabat",label:"Talabat",color:"#FF6B00"},{id:"uber_eats",label:"Uber Eats",color:"#06C167"}]},
-  "SG":{label:"🇸🇬 Southeast Asia",platforms:[{id:"grab_food",label:"GrabFood",color:"#00B14F"},{id:"uber_eats",label:"Uber Eats",color:"#06C167"}]},
+  "IN":{label:"🇮🇳 India",platforms:[
+    {id:"zomato",label:"Zomato",color:"#e23744",icon:"🍽️"},
+    {id:"swiggy",label:"Swiggy",color:"#fc8019",icon:"🧡"},
+    {id:"blinkit",label:"Blinkit",color:"#f8d000",icon:"⚡",soon:true},
+    {id:"amazon_food",label:"Amazon Food",color:"#FF9900",icon:"📦",soon:true},
+  ]},
+  "US":{label:"🇺🇸 United States",platforms:[
+    {id:"doordash",label:"DoorDash",color:"#ff3008",icon:"🚪"},
+    {id:"uber_eats",label:"Uber Eats",color:"#06C167",icon:"🚗"},
+  ]},
+  "GB":{label:"🇬🇧 United Kingdom",platforms:[
+    {id:"deliveroo",label:"Deliveroo",color:"#00CCBC",icon:"🦘"},
+    {id:"uber_eats",label:"Uber Eats",color:"#06C167",icon:"🚗"},
+  ]},
+  "EU":{label:"🇪🇺 Europe",platforms:[
+    {id:"bolt_food",label:"Bolt Food",color:"#34D186",icon:"⚡"},
+    {id:"deliveroo",label:"Deliveroo",color:"#00CCBC",icon:"🦘"},
+  ]},
+  "AE":{label:"🇦🇪 Middle East",platforms:[
+    {id:"talabat",label:"Talabat",color:"#FF6B00",icon:"🥙"},
+    {id:"uber_eats",label:"Uber Eats",color:"#06C167",icon:"🚗"},
+  ]},
+  "SG":{label:"🇸🇬 Southeast Asia",platforms:[
+    {id:"grab_food",label:"GrabFood",color:"#00B14F",icon:"🟢"},
+    {id:"uber_eats",label:"Uber Eats",color:"#06C167",icon:"🚗"},
+  ]},
 }
 
 function LeafLogo({ size=32 }) {
@@ -326,7 +346,7 @@ function GlobalSection({ globalStats }) {
               <div style={{fontSize:14,fontWeight:600,color:"white",marginBottom:10}}>{label}</div>
               {platforms.map(p=>(
                 <div key={p.id} style={{display:"flex",alignItems:"center",gap:8,marginBottom:6}}>
-                  <div style={{width:7,height:7,borderRadius:"50%",background:p.color,flexShrink:0}}/>
+                  <span style={{fontSize:14}}>{p.icon}</span>
                   <span style={{fontSize:13,color:"#74c69d"}}>{p.label}</span>
                   {p.soon&&<span style={{fontSize:10,color:"#40916c",marginLeft:"auto"}}>soon</span>}
                 </div>
@@ -438,9 +458,10 @@ function ConnectModal({ onClose, onStart }) {
                 <div style={{width:22,height:22,borderRadius:6,border:`2px solid ${apps.includes(p.id)&&!p.soon?"#2d6a4f":"#b7e4c7"}`,background:apps.includes(p.id)&&!p.soon?"#2d6a4f":"transparent",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
                   {apps.includes(p.id)&&!p.soon&&<svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>}
                 </div>
+                <span style={{fontSize:18}}>{p.icon}</span>
                 <div style={{flex:1}}>
                   <div style={{fontSize:15,fontWeight:700,color:p.color}}>{p.label}</div>
-                  <div style={{fontSize:11,color:"#95d5b2"}}>{p.soon?"Coming soon":"Order confirmation emails"}</div>
+                  <div style={{fontSize:11,color:"#95d5b2"}}>{p.soon?"Coming soon — ecommerce":"Order confirmation emails"}</div>
                 </div>
               </div>
             ))}
@@ -821,8 +842,8 @@ function FeedbackBox({ country, totalKg }) {
 export default function App() {
   const getInitialScreen = () => {
     const path = window.location.pathname
-    const hash = window.location.hash
-    if (path === "/privacy" || hash === "#privacy") return "privacy"
+    if (path === "/privacy") return "privacy"
+    if (path === "/terms") return "terms"
     return "landing"
   }
   const [screen, setScreen] = useState(getInitialScreen)
@@ -904,6 +925,7 @@ export default function App() {
   if(screen==="dashboard"&&result) return <Dashboard data={result} onReset={()=>{setScreen("landing");setResult(null);setJobId(null)}}/>
 
   if(screen==="privacy") return <PrivacyPage onBack={()=>setScreen("landing")}/>
+  if(screen==="terms") return <TermsPage onBack={()=>setScreen("landing")}/>
 
   const Footer = () => (
     <footer style={{background:"#1b4332",padding:"2.5rem 2rem",textAlign:"center"}}>
@@ -915,7 +937,8 @@ export default function App() {
         <a href={`${API}/docs`} target="_blank" rel="noreferrer" style={{fontSize:13,color:"#74c69d",textDecoration:"none"}}>API docs</a>
         <a href="https://github.com/manuparamesh/packetwatch-api" target="_blank" rel="noreferrer" style={{fontSize:13,color:"#74c69d",textDecoration:"none"}}>GitHub</a>
         <a href="#about" style={{fontSize:13,color:"#74c69d",textDecoration:"none"}}>About</a>
-        <button onClick={()=>setScreen("privacy")} style={{fontSize:13,color:"#74c69d",textDecoration:"none",background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"inherit"}}>Privacy Policy</button>
+        <button onClick={()=>setScreen("privacy")} style={{fontSize:13,color:"#74c69d",background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"inherit"}}>Privacy Policy</button>
+        <button onClick={()=>setScreen("terms")} style={{fontSize:13,color:"#74c69d",background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"inherit"}}>Terms of Service</button>
       </div>
       <p style={{fontSize:12,color:"#52b788",margin:0}}>Open source · Built by Manu Paramesh &amp; Roopa Narayanan · Making food delivery plastic visible</p>
     </footer>
@@ -1037,6 +1060,104 @@ function PrivacyPage({ onBack }) {
         <div style={{marginTop:"3rem",background:"#d8f3dc",borderRadius:16,padding:"1.5rem",textAlign:"center"}}>
           <div style={{fontSize:14,color:"#1b4332",fontWeight:600,marginBottom:6}}>This privacy policy is publicly available at packetwatch.space/privacy</div>
           <div style={{fontSize:13,color:"#2d6a4f",lineHeight:1.6}}>It is required as part of Google's OAuth verification process. PacketWatch's Gmail usage complies fully with Google API Services User Data Policy and the Limited Use requirements.</div>
+        </div>
+
+        <button onClick={onBack} style={{display:"block",margin:"2rem auto 0",background:"#1b4332",color:"white",border:"none",borderRadius:100,padding:"12px 32px",fontSize:15,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>
+          ← Back to PacketWatch
+        </button>
+      </div>
+    </div>
+  )
+}
+
+/* ── TERMS PAGE ─────────────────────────────────────────────────────────── */
+function TermsPage({ onBack }) {
+  useEffect(() => {
+    window.history.pushState({}, "Terms of Service - PacketWatch", "/terms")
+  }, [])
+
+  const sections = [
+    {
+      title: "Acceptance of terms",
+      content: "By using PacketWatch ('the Service'), you agree to these Terms of Service. If you do not agree, please do not use the Service. PacketWatch is provided free of charge as an open-source tool for personal use."
+    },
+    {
+      title: "Description of service",
+      content: "PacketWatch is a free, open-source tool that estimates the plastic waste generated by your food delivery orders. It does this by connecting to your Gmail account (read-only), identifying food delivery order confirmation emails, and using AI to estimate plastic packaging per order."
+    },
+    {
+      title: "Use of Google account data",
+      content: "You authorise PacketWatch to access your Gmail account in read-only mode solely for the purpose of identifying food delivery order confirmation emails. This authorisation can be revoked at any time via myaccount.google.com/permissions. We comply fully with Google API Services User Data Policy."
+    },
+    {
+      title: "Acceptable use",
+      content: "You agree to use PacketWatch only for its intended purpose — estimating personal food delivery plastic waste. You must not attempt to reverse engineer, scrape, or misuse the Service. You must not use the Service for any unlawful purpose."
+    },
+    {
+      title: "No warranties",
+      content: "PacketWatch is provided 'as is' without warranties of any kind. Plastic estimates are approximations based on industry averages and may not reflect actual packaging used by specific restaurants. We do not guarantee accuracy of estimates."
+    },
+    {
+      title: "Limitation of liability",
+      content: "To the fullest extent permitted by law, PacketWatch and its creators shall not be liable for any indirect, incidental, or consequential damages arising from your use of the Service. Our total liability shall not exceed zero, as the Service is provided free of charge."
+    },
+    {
+      title: "Open source",
+      content: "PacketWatch is open source software. The source code is available at github.com/manuparamesh/packetwatch-api and github.com/manuparamesh/packetwatch-web. It is licensed under the MIT License."
+    },
+    {
+      title: "Changes to service",
+      content: "We reserve the right to modify or discontinue the Service at any time without notice. We may update these Terms at any time — continued use of the Service after changes constitutes acceptance."
+    },
+    {
+      title: "Contact",
+      content: "For questions about these Terms, contact: manuparameshi3@gmail.com. PacketWatch is maintained by Manu Paramesh and Roopa Narayanan."
+    }
+  ]
+
+  return (
+    <div style={{minHeight:"100vh",background:"#f8fdf9",fontFamily:"'DM Sans',sans-serif"}}>
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+      <div style={{background:"#1b4332",padding:"1.5rem 2rem",display:"flex",alignItems:"center",gap:16}}>
+        <button onClick={onBack} style={{background:"rgba(255,255,255,0.1)",border:"1px solid rgba(255,255,255,0.2)",borderRadius:100,padding:"7px 16px",color:"white",fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"inherit",display:"flex",alignItems:"center",gap:6}}>
+          ← Back
+        </button>
+        <div style={{display:"flex",alignItems:"center",gap:10}}>
+          <LeafLogo size={28}/>
+          <span style={{fontFamily:"'Playfair Display',serif",fontSize:18,fontWeight:700,color:"white"}}>PacketWatch</span>
+        </div>
+      </div>
+
+      <div style={{maxWidth:760,margin:"0 auto",padding:"4rem 2rem"}}>
+        <div style={{marginBottom:"3rem"}}>
+          <div style={{fontSize:11,fontWeight:700,color:"#40916c",letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:"0.75rem"}}>LEGAL</div>
+          <h1 style={{fontFamily:"'Playfair Display',serif",fontSize:"clamp(32px,5vw,48px)",fontWeight:700,color:"#1b4332",margin:"0 0 1rem",letterSpacing:"-0.02em"}}>Terms of Service</h1>
+          <p style={{fontSize:15,color:"#52b788",margin:"0 0 0.5rem"}}>Last updated: April 2026</p>
+          <p style={{fontSize:15,color:"#40916c",lineHeight:1.7,margin:0}}>PacketWatch is a free, open-source tool. These terms are intentionally simple — we ask only that you use the service for its intended purpose.</p>
+        </div>
+
+        <div style={{background:"#1b4332",borderRadius:20,padding:"1.5rem 2rem",marginBottom:"3rem",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))",gap:"1rem"}}>
+          {[["✅","Free forever","No paid plans ever"],["🔓","Open source","MIT licensed"],["🚫","No ads","Never monetised"],["📧","Contact us","manuparameshi3@gmail.com"]].map(([icon,title,desc])=>(
+            <div key={title} style={{textAlign:"center"}}>
+              <div style={{fontSize:24,marginBottom:6}}>{icon}</div>
+              <div style={{fontSize:13,fontWeight:600,color:"white",marginBottom:3}}>{title}</div>
+              <div style={{fontSize:11,color:"#74c69d",lineHeight:1.4}}>{desc}</div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{display:"flex",flexDirection:"column",gap:"2rem"}}>
+          {sections.map((s,i)=>(
+            <div key={i} style={{borderBottom:"1px solid #e9f5ee",paddingBottom:"2rem"}}>
+              <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:22,fontWeight:700,color:"#1b4332",margin:"0 0 0.75rem"}}>{i+1}. {s.title}</h2>
+              <p style={{fontSize:15,color:"#40916c",lineHeight:1.8,margin:0}}>{s.content}</p>
+            </div>
+          ))}
+        </div>
+
+        <div style={{marginTop:"3rem",background:"#d8f3dc",borderRadius:16,padding:"1.5rem",textAlign:"center"}}>
+          <div style={{fontSize:14,color:"#1b4332",fontWeight:600,marginBottom:6}}>These terms are publicly available at packetwatch.space/terms</div>
+          <div style={{fontSize:13,color:"#2d6a4f",lineHeight:1.6}}>Required as part of Google's OAuth verification process.</div>
         </div>
 
         <button onClick={onBack} style={{display:"block",margin:"2rem auto 0",background:"#1b4332",color:"white",border:"none",borderRadius:100,padding:"12px 32px",fontSize:15,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>
