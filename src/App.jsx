@@ -157,12 +157,47 @@ function PhotoSection() {
 }
 
 /* ── HOW IT WORKS ───────────────────────────────────────────────────────── */
+function GmailIcon() {
+  return (
+    <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
+      <path d="M44 8H4C1.8 8 0 9.8 0 12v24c0 2.2 1.8 4 4 4h40c2.2 0 4-1.8 4-4V12c0-2.2-1.8-4-4-4z" fill="white"/>
+      <path d="M44 8L24 26 4 8" stroke="#EA4335" strokeWidth="2"/>
+      <path d="M0 12l16 12L0 36" stroke="#34A853" strokeWidth="2"/>
+      <path d="M48 12L32 24l16 12" stroke="#FBBC05" strokeWidth="2"/>
+      <path d="M4 8h40L24 26 4 8z" fill="#EA4335"/>
+      <path d="M0 12v24l16-12L0 12z" fill="#34A853"/>
+      <path d="M48 12v24L32 24l16-12z" fill="#FBBC05"/>
+      <path d="M4 36h40L32 24 24 30l-8-6L0 36h4z" fill="#4285F4"/>
+    </svg>
+  )
+}
+
 function HowItWorks({ onConnect }) {
   const steps = [
-    {num:"01",icon:"📧",title:"Connect Gmail",desc:"Grant read-only access. We only search for order confirmation emails — your inbox stays completely private."},
-    {num:"02",icon:"🤖",title:"AI analyses each order",desc:"GPT estimates plastic per dish using rules specific to Indian and global food delivery packaging — containers, covers, cutlery, sachets."},
-    {num:"03",icon:"📊",title:"See your footprint",desc:"Get your plastic trend over time, worst restaurants, cuisine breakdown, and personalised tips to reduce waste."},
+    {
+      num:"01",
+      icon: <GmailIcon/>,
+      iconBg:"#fce8e6",
+      title:"Connect your Gmail",
+      desc:"One click connects your Gmail securely. We search only for order confirmation emails — nothing else is ever read, stored, or shared."
+    },
+    {
+      num:"02",
+      icon:"🔬",
+      iconBg:"#d8f3dc",
+      title:"Validated on 100+ real orders",
+      desc:"Packaging rules were hand-crafted from 100+ validated food delivery orders — covering containers, foil covers, sachets, and cutlery by cuisine type and region. Every new user makes the model more accurate.",
+      link:{ label:"Read how we built it →", url:"#" }
+    },
+    {
+      num:"03",
+      icon:"📊",
+      iconBg:"#e8f4fd",
+      title:"See your full footprint",
+      desc:"Get a personal plastic report — trend over time, worst offending restaurants, cuisine breakdown, and exactly where you can cut down."
+    },
   ]
+
   return (
     <section id="how" style={{padding:"6rem 2rem",background:"#f8fdf9"}}>
       <div style={{maxWidth:1100,margin:"0 auto"}}>
@@ -171,21 +206,55 @@ function HowItWorks({ onConnect }) {
           <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:"clamp(28px,4vw,44px)",fontWeight:700,color:"#1b4332",margin:"0.75rem 0 1rem",letterSpacing:"-0.02em"}}>Three steps to know your plastic truth</h2>
           <p style={{fontSize:16,color:"#52b788",maxWidth:480,margin:"0 auto",lineHeight:1.6}}>Takes less than 2 minutes. No uploads, no manual work.</p>
         </div>
-        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:"2rem"}}>
+
+        {/* Step cards */}
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:"2rem",marginBottom:"3rem"}}>
           {steps.map((s,i)=>(
             <div key={i} style={{background:"white",borderRadius:24,padding:"2.5rem 2rem",border:"1px solid #e9f5ee",position:"relative",overflow:"hidden",boxShadow:"0 2px 20px rgba(27,67,50,0.04)"}}>
               <div style={{position:"absolute",top:8,right:16,fontFamily:"'Playfair Display',serif",fontSize:80,fontWeight:700,color:"#f0faf4",lineHeight:1}}>{s.num}</div>
               <div style={{position:"relative",zIndex:1}}>
-                <div style={{width:56,height:56,borderRadius:16,background:"#d8f3dc",display:"flex",alignItems:"center",justifyContent:"center",fontSize:26,marginBottom:"1.25rem"}}>{s.icon}</div>
+                <div style={{width:56,height:56,borderRadius:16,background:s.iconBg,display:"flex",alignItems:"center",justifyContent:"center",fontSize:26,marginBottom:"1.25rem",flexShrink:0}}>
+                  {s.icon}
+                </div>
                 <h3 style={{fontFamily:"'Playfair Display',serif",fontSize:22,fontWeight:700,color:"#1b4332",margin:"0 0 0.75rem"}}>{s.title}</h3>
-                <p style={{fontSize:15,color:"#40916c",lineHeight:1.7,margin:0}}>{s.desc}</p>
+                <p style={{fontSize:15,color:"#40916c",lineHeight:1.7,margin:"0 0 0.75rem"}}>{s.desc}</p>
+                {s.link && (
+                  <a href={s.link.url} target="_blank" rel="noreferrer"
+                    style={{fontSize:13,fontWeight:600,color:"#2d6a4f",textDecoration:"none",display:"inline-flex",alignItems:"center",gap:4,borderBottom:"1px solid #b7e4c7",paddingBottom:1}}>
+                    {s.link.label}
+                  </a>
+                )}
               </div>
             </div>
           ))}
         </div>
-        <div style={{textAlign:"center",marginTop:"3rem"}}>
-          <button onClick={onConnect} style={{background:"#1b4332",color:"white",border:"none",borderRadius:100,padding:"14px 40px",fontSize:16,fontWeight:700,cursor:"pointer",fontFamily:"inherit"}}>Try it on your orders →</button>
+
+        {/* Why your feedback matters — banner */}
+        <div style={{background:"#1b4332",borderRadius:24,padding:"2.5rem 3rem",display:"grid",gridTemplateColumns:"1fr auto",gap:"2rem",alignItems:"center"}}>
+          <div>
+            <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:"1rem"}}>
+              <div style={{width:44,height:44,borderRadius:12,background:"rgba(149,213,178,0.15)",border:"1px solid rgba(149,213,178,0.3)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,flexShrink:0}}>🌱</div>
+              <h3 style={{fontFamily:"'Playfair Display',serif",fontSize:24,fontWeight:700,color:"white",margin:0}}>Why your feedback matters</h3>
+            </div>
+            <p style={{fontSize:15,color:"#95d5b2",lineHeight:1.8,margin:"0 0 1rem",maxWidth:620}}>
+              Our model improves with every piece of feedback. If we over- or under-estimated your order, tell us — your correction directly shapes the next version. Right now we're validated on <strong style={{color:"white"}}>100+ orders</strong>. With your help, we can reach <strong style={{color:"white"}}>10,000</strong>.
+            </p>
+            <div style={{display:"flex",gap:"2rem",flexWrap:"wrap"}}>
+              {[["100+","orders validated so far"],["10,000","our next milestone"],["Every user","improves accuracy"]].map(([n,l])=>(
+                <div key={l}>
+                  <div style={{fontFamily:"'Playfair Display',serif",fontSize:22,fontWeight:700,color:"#52b788"}}>{n}</div>
+                  <div style={{fontSize:11,color:"#74c69d",marginTop:2}}>{l}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div style={{flexShrink:0}}>
+            <button onClick={onConnect} style={{background:"#52b788",color:"white",border:"none",borderRadius:100,padding:"13px 28px",fontSize:15,fontWeight:700,cursor:"pointer",fontFamily:"inherit",whiteSpace:"nowrap"}}>
+              Contribute now →
+            </button>
+          </div>
         </div>
+
       </div>
     </section>
   )
@@ -658,11 +727,92 @@ function Dashboard({ data, onReset }) {
           </div>
         </div>
 
+        {/* Feedback */}
+        <FeedbackBox country={s.country} totalKg={s.total_kg}/>
+
         <div style={{borderTop:"1px solid #e9f5ee",paddingTop:"1.5rem",display:"flex",gap:"1.5rem",justifyContent:"center"}}>
           <a href={`${API}/docs`} target="_blank" rel="noreferrer" style={{fontSize:13,color:"#52b788",fontWeight:500,textDecoration:"none"}}>Public API docs ↗</a>
           <a href="https://github.com/manuparamesh/packetwatch-api" target="_blank" rel="noreferrer" style={{fontSize:13,color:"#52b788",fontWeight:500,textDecoration:"none"}}>GitHub ↗</a>
         </div>
       </div>
+    </div>
+  )
+}
+
+/* ── FEEDBACK BOX ───────────────────────────────────────────────────────── */
+function FeedbackBox({ country, totalKg }) {
+  const [message, setMessage] = useState("")
+  const [rating, setRating] = useState(null)
+  const [status, setStatus] = useState("idle") // idle | sending | done | error
+
+  const submit = async () => {
+    if (!message.trim() || message.trim().length < 3) return
+    setStatus("sending")
+    try {
+      const res = await fetch(`${API}/feedback`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message, country, total_kg: totalKg, rating })
+      })
+      if (res.ok) setStatus("done")
+      else setStatus("error")
+    } catch {
+      setStatus("error")
+    }
+  }
+
+  return (
+    <div style={{background:"white",borderRadius:20,padding:"1.5rem",border:"1px solid #e9f5ee",marginBottom:"1.5rem"}}>
+      <div style={{display:"flex",alignItems:"flex-start",gap:12,marginBottom:"1.25rem"}}>
+        <div style={{width:40,height:40,borderRadius:12,background:"#d8f3dc",display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0}}>💬</div>
+        <div>
+          <div style={{fontSize:14,fontWeight:700,color:"#1b4332",marginBottom:3}}>How accurate were these estimates?</div>
+          <div style={{fontSize:13,color:"#52b788",lineHeight:1.5}}>Your feedback directly improves our plastic estimation model. Did we get anything wrong? Any items missed?</div>
+        </div>
+      </div>
+
+      {status === "done" ? (
+        <div style={{background:"#f0faf4",borderRadius:12,padding:"1rem 1.25rem",display:"flex",alignItems:"center",gap:10}}>
+          <span style={{fontSize:20}}>✅</span>
+          <div>
+            <div style={{fontSize:14,fontWeight:600,color:"#1b4332"}}>Thanks for the feedback!</div>
+            <div style={{fontSize:12,color:"#52b788"}}>It goes directly to improving PacketWatch's estimation accuracy.</div>
+          </div>
+        </div>
+      ) : (
+        <>
+          {/* Star rating */}
+          <div style={{marginBottom:"1rem"}}>
+            <div style={{fontSize:12,fontWeight:600,color:"#40916c",marginBottom:8}}>How accurate overall? (optional)</div>
+            <div style={{display:"flex",gap:6}}>
+              {[1,2,3,4,5].map(n => (
+                <button key={n} onClick={()=>setRating(n===rating?null:n)}
+                  style={{width:36,height:36,borderRadius:8,border:`1.5px solid ${rating&&n<=rating?"#2d6a4f":"#e9f5ee"}`,background:rating&&n<=rating?"#f0faf4":"white",cursor:"pointer",fontSize:18,display:"flex",alignItems:"center",justifyContent:"center",transition:"all 0.15s"}}>
+                  {n <= (rating||0) ? "⭐" : "☆"}
+                </button>
+              ))}
+              {rating && <span style={{fontSize:12,color:"#52b788",alignSelf:"center",marginLeft:4}}>{["","Very inaccurate","Inaccurate","OK","Accurate","Very accurate"][rating]}</span>}
+            </div>
+          </div>
+
+          {/* Text area */}
+          <textarea
+            value={message}
+            onChange={e=>setMessage(e.target.value)}
+            placeholder="e.g. 'The biryani estimate felt high — the restaurant uses steel containers' or 'Missed the plastic straw in the cold coffee order'"
+            rows={3}
+            style={{width:"100%",padding:"12px 14px",borderRadius:12,border:"1.5px solid #e9f5ee",fontSize:14,color:"#1b4332",fontFamily:"'DM Sans',sans-serif",lineHeight:1.6,resize:"vertical",outline:"none",boxSizing:"border-box",marginBottom:"0.75rem"}}
+          />
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+            <span style={{fontSize:11,color:"#95d5b2"}}>{message.length}/500 characters</span>
+            <button onClick={submit} disabled={status==="sending"||message.trim().length<3}
+              style={{background:message.trim().length>=3?"#1b4332":"#d8f3dc",color:message.trim().length>=3?"white":"#95d5b2",border:"none",borderRadius:100,padding:"9px 24px",fontSize:14,fontWeight:600,cursor:message.trim().length>=3?"pointer":"default",fontFamily:"inherit",transition:"all 0.15s"}}>
+              {status==="sending" ? "Sending..." : "Send feedback"}
+            </button>
+          </div>
+          {status==="error" && <div style={{fontSize:12,color:"#e23744",marginTop:8}}>Something went wrong — please try again.</div>}
+        </>
+      )}
     </div>
   )
 }
@@ -747,6 +897,24 @@ export default function App() {
 
   if(screen==="dashboard"&&result) return <Dashboard data={result} onReset={()=>{setScreen("landing");setResult(null);setJobId(null)}}/>
 
+  if(screen==="privacy") return <PrivacyPage onBack={()=>setScreen("landing")}/>
+
+  const Footer = () => (
+    <footer style={{background:"#1b4332",padding:"2.5rem 2rem",textAlign:"center"}}>
+      <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginBottom:12}}>
+        <LeafLogo size={24}/>
+        <span style={{fontFamily:"'Playfair Display',serif",fontSize:16,color:"white"}}>PacketWatch</span>
+      </div>
+      <div style={{display:"flex",gap:"2rem",justifyContent:"center",marginBottom:12,flexWrap:"wrap"}}>
+        <a href={`${API}/docs`} target="_blank" rel="noreferrer" style={{fontSize:13,color:"#74c69d",textDecoration:"none"}}>API docs</a>
+        <a href="https://github.com/manuparamesh/packetwatch-api" target="_blank" rel="noreferrer" style={{fontSize:13,color:"#74c69d",textDecoration:"none"}}>GitHub</a>
+        <a href="#about" style={{fontSize:13,color:"#74c69d",textDecoration:"none"}}>About</a>
+        <button onClick={()=>setScreen("privacy")} style={{fontSize:13,color:"#74c69d",textDecoration:"none",background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"inherit"}}>Privacy Policy</button>
+      </div>
+      <p style={{fontSize:12,color:"#52b788",margin:0}}>Open source · Built by Manu Paramesh &amp; Roopa Narayanan · Making food delivery plastic visible</p>
+    </footer>
+  )
+
   return (
     <div style={{fontFamily:"'DM Sans',sans-serif"}}>
       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
@@ -756,19 +924,116 @@ export default function App() {
       <HowItWorks onConnect={()=>setShowModal(true)}/>
       <GlobalSection globalStats={globalStats}/>
       <AboutSection/>
-      <footer style={{background:"#1b4332",padding:"2.5rem 2rem",textAlign:"center"}}>
-        <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginBottom:12}}>
-          <LeafLogo size={24}/>
-          <span style={{fontFamily:"'Playfair Display',serif",fontSize:16,color:"white"}}>PacketWatch</span>
-        </div>
-        <div style={{display:"flex",gap:"2rem",justifyContent:"center",marginBottom:12}}>
-          <a href={`${API}/docs`} target="_blank" rel="noreferrer" style={{fontSize:13,color:"#74c69d",textDecoration:"none"}}>API docs</a>
-          <a href="https://github.com/manuparamesh/packetwatch-api" target="_blank" rel="noreferrer" style={{fontSize:13,color:"#74c69d",textDecoration:"none"}}>GitHub</a>
-          <a href="#about" style={{fontSize:13,color:"#74c69d",textDecoration:"none"}}>About</a>
-        </div>
-        <p style={{fontSize:12,color:"#52b788",margin:0}}>Open source · Built by Manu Paramesh &amp; Roopa Narayanan · Making food delivery plastic visible</p>
-      </footer>
+      <Footer/>
       {showModal&&<ConnectModal onClose={()=>setShowModal(false)} onStart={handleAppStart}/>}
+    </div>
+  )
+}
+
+/* ── PRIVACY PAGE ────────────────────────────────────────────────────────── */
+function PrivacyPage({ onBack }) {
+  const sections = [
+    {
+      title: "Overview",
+      content: "PacketWatch ('we', 'us', 'our') is an open-source tool that estimates the plastic waste generated by your food delivery orders. This Privacy Policy explains what data we access, what we do with it, and what we never do with it. Our commitment is simple: your data is yours, and we treat it that way."
+    },
+    {
+      title: "What we access",
+      content: "When you connect your Gmail account, we request read-only OAuth 2.0 access scoped to: searching your inbox for food delivery order confirmation emails (e.g. emails from noreply@zomato.com with subject 'Your Zomato order from'). We do not access, read, or store any other emails in your inbox. We never request write, send, delete, or modify permissions."
+    },
+    {
+      title: "What we do with your email data",
+      content: "Your email content is processed live in your session only. We extract the following fields from order confirmation emails: restaurant name, order date, items ordered, and total amount. This data is used solely to estimate plastic packaging waste for your personal report. We never store, share, sell, or transmit your email content or personal order data to any third party."
+    },
+    {
+      title: "What we store",
+      content: "We store only fully anonymised, aggregate statistics: your country, total plastic estimated (in kg), and number of orders analysed. This data contains no personally identifiable information and is used to power the global impact map on our homepage. We also store optional feedback you choose to submit, which includes only the text you write and your country."
+    },
+    {
+      title: "What we never do",
+      content: "We never store your Gmail credentials or OAuth tokens beyond your active session. We never read emails outside of food delivery order confirmations. We never sell, share, or monetise any user data. We never use your data for advertising or profiling. We never send you marketing emails."
+    },
+    {
+      title: "Google API usage",
+      content: "Our use of Google APIs complies with the Google API Services User Data Policy, including the Limited Use requirements. We use Gmail read-only scope exclusively to identify food delivery order emails for the purpose of plastic waste estimation as described to the user at time of authorisation. We do not transfer data obtained through Google APIs to third parties except as necessary to perform the in-session analysis described above."
+    },
+    {
+      title: "Data retention",
+      content: "Email content and personal order data: not retained at all — processed in-session and discarded. Anonymised aggregate statistics (country + total kg): retained indefinitely to power the global map. User feedback: retained to improve our estimation model. You may request deletion of any feedback by contacting us."
+    },
+    {
+      title: "Security",
+      content: "All data is transmitted over HTTPS. OAuth tokens are handled by Google's authentication servers and are not stored on our servers. Our backend is open source and can be independently audited at github.com/manuparamesh/packetwatch-api."
+    },
+    {
+      title: "Your rights",
+      content: "You may revoke PacketWatch's Gmail access at any time by visiting myaccount.google.com/permissions. You may request deletion of any stored feedback by contacting us. Since we do not store personal data, there is nothing else to delete or export."
+    },
+    {
+      title: "Contact",
+      content: "For privacy questions or data deletion requests, contact: manuparameshi3@gmail.com. PacketWatch is an open-source project maintained by Manu Paramesh and Roopa Narayanan."
+    },
+    {
+      title: "Changes to this policy",
+      content: "We may update this policy as the product evolves. Material changes will be noted on our GitHub repository. Continued use of PacketWatch after changes constitutes acceptance of the updated policy."
+    }
+  ]
+
+  return (
+    <div style={{minHeight:"100vh",background:"#f8fdf9",fontFamily:"'DM Sans',sans-serif"}}>
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+      {/* Header */}
+      <div style={{background:"#1b4332",padding:"1.5rem 2rem",display:"flex",alignItems:"center",gap:16}}>
+        <button onClick={onBack} style={{background:"rgba(255,255,255,0.1)",border:"1px solid rgba(255,255,255,0.2)",borderRadius:100,padding:"7px 16px",color:"white",fontSize:13,fontWeight:500,cursor:"pointer",fontFamily:"inherit",display:"flex",alignItems:"center",gap:6}}>
+          ← Back
+        </button>
+        <div style={{display:"flex",alignItems:"center",gap:10}}>
+          <LeafLogo size={28}/>
+          <span style={{fontFamily:"'Playfair Display',serif",fontSize:18,fontWeight:700,color:"white"}}>PacketWatch</span>
+        </div>
+      </div>
+
+      <div style={{maxWidth:760,margin:"0 auto",padding:"4rem 2rem"}}>
+        {/* Title */}
+        <div style={{marginBottom:"3rem"}}>
+          <div style={{fontSize:11,fontWeight:700,color:"#40916c",letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:"0.75rem"}}>LEGAL</div>
+          <h1 style={{fontFamily:"'Playfair Display',serif",fontSize:"clamp(32px,5vw,48px)",fontWeight:700,color:"#1b4332",margin:"0 0 1rem",letterSpacing:"-0.02em"}}>Privacy Policy</h1>
+          <p style={{fontSize:15,color:"#52b788",margin:"0 0 0.5rem"}}>Last updated: April 2026</p>
+          <p style={{fontSize:15,color:"#40916c",lineHeight:1.7,margin:0}}>PacketWatch is built on a foundation of trust. We access the minimum data necessary, process it in your session, and store nothing personal. This document explains exactly how.</p>
+        </div>
+
+        {/* Key commitments banner */}
+        <div style={{background:"#1b4332",borderRadius:20,padding:"1.5rem 2rem",marginBottom:"3rem",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))",gap:"1rem"}}>
+          {[["🔒","Read-only Gmail","We can never modify or delete"],["🚫","No email storage","Content never hits our DB"],["👁","Open source","Every line auditable on GitHub"],["✅","Google compliant","Follows Limited Use policy"]].map(([icon,title,desc])=>(
+            <div key={title} style={{textAlign:"center"}}>
+              <div style={{fontSize:24,marginBottom:6}}>{icon}</div>
+              <div style={{fontSize:13,fontWeight:600,color:"white",marginBottom:3}}>{title}</div>
+              <div style={{fontSize:11,color:"#74c69d",lineHeight:1.4}}>{desc}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Sections */}
+        <div style={{display:"flex",flexDirection:"column",gap:"2rem"}}>
+          {sections.map((s,i)=>(
+            <div key={i} style={{borderBottom:"1px solid #e9f5ee",paddingBottom:"2rem"}}>
+              <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:22,fontWeight:700,color:"#1b4332",margin:"0 0 0.75rem"}}>{i+1}. {s.title}</h2>
+              <p style={{fontSize:15,color:"#40916c",lineHeight:1.8,margin:0}}>{s.content}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer note */}
+        <div style={{marginTop:"3rem",background:"#d8f3dc",borderRadius:16,padding:"1.5rem",textAlign:"center"}}>
+          <div style={{fontSize:14,color:"#1b4332",fontWeight:600,marginBottom:6}}>This privacy policy is publicly available at packetwatch.space/privacy</div>
+          <div style={{fontSize:13,color:"#2d6a4f",lineHeight:1.6}}>It is required as part of Google's OAuth verification process. PacketWatch's Gmail usage complies fully with Google API Services User Data Policy and the Limited Use requirements.</div>
+        </div>
+
+        <button onClick={onBack} style={{display:"block",margin:"2rem auto 0",background:"#1b4332",color:"white",border:"none",borderRadius:100,padding:"12px 32px",fontSize:15,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>
+          ← Back to PacketWatch
+        </button>
+      </div>
     </div>
   )
 }
