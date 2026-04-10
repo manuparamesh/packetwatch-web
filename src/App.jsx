@@ -819,7 +819,13 @@ function FeedbackBox({ country, totalKg }) {
 
 /* ── ROOT ────────────────────────────────────────────────────────────────── */
 export default function App() {
-  const [screen, setScreen] = useState("landing")
+  const getInitialScreen = () => {
+    const path = window.location.pathname
+    const hash = window.location.hash
+    if (path === "/privacy" || hash === "#privacy") return "privacy"
+    return "landing"
+  }
+  const [screen, setScreen] = useState(getInitialScreen)
   const [showModal, setShowModal] = useState(false)
   const [jobId, setJobId] = useState(null)
   const [progress, setProgress] = useState(0)
@@ -932,6 +938,9 @@ export default function App() {
 
 /* ── PRIVACY PAGE ────────────────────────────────────────────────────────── */
 function PrivacyPage({ onBack }) {
+  useEffect(() => {
+    window.history.pushState({}, "Privacy Policy - PacketWatch", "/privacy")
+  }, [])
   const sections = [
     {
       title: "Overview",
