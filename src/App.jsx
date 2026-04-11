@@ -95,7 +95,7 @@ function Hero({ onConnect, globalStats }) {
             How much plastic does your food delivery habit generate?
           </h1>
           <p style={{fontSize:17,color:"rgba(255,255,255,0.8)",lineHeight:1.75,margin:"0 0 2rem"}}>
-            Connect your Gmail. We analyse every order confirmation — estimating containers, sachets, cutlery and covers using AI trained on Indian and global food packaging patterns.
+            Connect your Gmail. We analyse every order confirmation . estimating containers, sachets, cutlery and covers using AI trained on Indian and global food packaging patterns.
           </p>
           <div style={{display:"flex",gap:12,alignItems:"center",marginBottom:"2.5rem",flexWrap:"wrap"}}>
             <button onClick={onConnect} style={{background:"#52b788",color:"white",border:"none",borderRadius:100,padding:"14px 32px",fontSize:16,fontWeight:700,cursor:"pointer",fontFamily:"inherit",display:"flex",alignItems:"center",gap:10,boxShadow:"0 8px 32px rgba(82,183,136,0.35)"}}>
@@ -121,7 +121,7 @@ function Hero({ onConnect, globalStats }) {
         <div style={{display:"flex",flexDirection:"column",gap:"1rem"}}>
           <div style={{background:"rgba(255,255,255,0.07)",backdropFilter:"blur(20px)",border:"1px solid rgba(255,255,255,0.12)",borderRadius:24,padding:"2rem",textAlign:"center"}}>
             <div style={{fontSize:11,fontWeight:700,color:"#95d5b2",letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8}}>
-              {globalStats.total_users > 0 ? `${globalStats.total_users} users tracked` : "sample data — 500 orders"}
+              {globalStats.total_users > 0 ? `${globalStats.total_users} users tracked` : "sample data . 500 orders"}
             </div>
             <div style={{fontFamily:"'Playfair Display',serif",fontSize:60,fontWeight:700,color:"white",lineHeight:1}}>
               {globalStats.total_kg > 0 ? globalStats.total_kg.toFixed(2) : (count/1000).toFixed(2)}
@@ -155,14 +155,14 @@ function PhotoSection() {
         <div style={{position:"absolute",inset:0,background:"linear-gradient(to top, rgba(27,67,50,0.85) 0%, rgba(27,67,50,0.2) 60%)",display:"flex",alignItems:"flex-end",padding:"2.5rem"}}>
           <div>
             <div style={{fontFamily:"'Playfair Display',serif",fontSize:28,fontWeight:700,color:"white",marginBottom:10,lineHeight:1.2}}>Every order.<br/>Every container.</div>
-            <div style={{fontSize:14,color:"rgba(255,255,255,0.75)",lineHeight:1.6,maxWidth:300}}>The average Indian food delivery order generates 52g of single-use plastic — most of it ending up in landfill.</div>
+            <div style={{fontSize:14,color:"rgba(255,255,255,0.75)",lineHeight:1.6,maxWidth:300}}>The average Indian food delivery order generates 52g of single-use plastic . most of it ending up in landfill.</div>
           </div>
         </div>
       </div>
       <div style={{background:"#1b4332",padding:"4rem 3rem",display:"flex",flexDirection:"column",justifyContent:"center"}}>
         <div style={{fontSize:11,fontWeight:700,color:"#52b788",letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:"1.5rem"}}>The problem</div>
         <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:"clamp(26px,3vw,36px)",fontWeight:700,color:"white",margin:"0 0 1.5rem",lineHeight:1.2}}>Most people have no idea how much plastic they generate</h2>
-        <p style={{fontSize:15,color:"rgba(255,255,255,0.65)",lineHeight:1.8,margin:"0 0 2rem"}}>India processes over 4 billion food delivery orders a year. Each generates plastic that mostly ends up in landfill. PacketWatch makes the invisible visible — by turning your order history into a real plastic footprint.</p>
+        <p style={{fontSize:15,color:"rgba(255,255,255,0.65)",lineHeight:1.8,margin:"0 0 2rem"}}>India processes over 4 billion food delivery orders a year. Each generates plastic that mostly ends up in landfill. PacketWatch makes the invisible visible by turning your order history into a real plastic footprint.</p>
         <div style={{display:"flex",flexDirection:"column",gap:10}}>
           {[["4.2B","food delivery orders in India yearly"],["218K","tonnes of plastic generated annually"],["<5%","plastic packaging actually recycled"]].map(([n,l])=>(
             <div key={l} style={{display:"flex",alignItems:"center",gap:16,padding:"12px 16px",background:"rgba(255,255,255,0.05)",borderRadius:12}}>
@@ -199,14 +199,14 @@ function HowItWorks({ onConnect }) {
       icon: <GmailIcon/>,
       iconBg:"#fce8e6",
       title:"Connect your Gmail",
-      desc:"One click connects your Gmail securely. We search only for order confirmation emails — nothing else is ever read, stored, or shared."
+      desc:"Connecting your Gmail takes one click. We search only for order confirmation emails . nothing else is ever read, stored, or shared."
     },
     {
       num:"02",
       icon:"🔬",
       iconBg:"#d8f3dc",
       title:"Validated on 100+ real orders",
-      desc:"Packaging rules were hand-crafted from 100+ validated food delivery orders — covering containers, foil covers, sachets, and cutlery by cuisine type and region. Every new user makes the model more accurate.",
+      desc:"Packaging rules were hand-crafted from 100+ validated food delivery orders . covering containers, foil covers, sachets, and cutlery by cuisine type and region. Every new user makes the model more accurate.",
       link:{ label:"Read how we built it →", url:"#" }
     },
     {
@@ -214,7 +214,7 @@ function HowItWorks({ onConnect }) {
       icon:"📊",
       iconBg:"#e8f4fd",
       title:"See your full footprint",
-      desc:"Get a personal plastic report — trend over time, worst offending restaurants, cuisine breakdown, and exactly where you can cut down."
+      desc:"Get a personal plastic report . trend over time, worst offending restaurants, cuisine breakdown, and exactly where you can cut down."
     },
   ]
 
@@ -224,7 +224,7 @@ function HowItWorks({ onConnect }) {
         <div style={{textAlign:"center",marginBottom:"4rem"}}>
           <span style={{fontSize:11,fontWeight:700,color:"#40916c",letterSpacing:"0.1em",textTransform:"uppercase"}}>HOW IT WORKS</span>
           <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:"clamp(28px,4vw,44px)",fontWeight:700,color:"#1b4332",margin:"0.75rem 0 1rem",letterSpacing:"-0.02em"}}>Three steps to know your plastic truth</h2>
-          <p style={{fontSize:16,color:"#52b788",maxWidth:480,margin:"0 auto",lineHeight:1.6}}>Takes less than 2 minutes. No uploads, no manual work.</p>
+          <p style={{fontSize:16,color:"#52b788",maxWidth:480,margin:"0 auto",lineHeight:1.6}}>Takes less than 2 minutes with no uploads and no manual work.</p>
         </div>
 
         {/* Step cards */}
@@ -249,7 +249,7 @@ function HowItWorks({ onConnect }) {
           ))}
         </div>
 
-        {/* Why your feedback matters — banner */}
+        {/* Why your feedback matters . banner */}
         <div style={{background:"#1b4332",borderRadius:24,padding:"2.5rem 3rem",display:"grid",gridTemplateColumns:"1fr auto",gap:"2rem",alignItems:"center"}}>
           <div>
             <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:"1rem"}}>
@@ -257,7 +257,7 @@ function HowItWorks({ onConnect }) {
               <h3 style={{fontFamily:"'Playfair Display',serif",fontSize:24,fontWeight:700,color:"white",margin:0}}>Why your feedback matters</h3>
             </div>
             <p style={{fontSize:15,color:"#95d5b2",lineHeight:1.8,margin:"0 0 1rem",maxWidth:620}}>
-              Our model improves with every piece of feedback. If we over- or under-estimated your order, tell us — your correction directly shapes the next version. Right now we're validated on <strong style={{color:"white"}}>100+ orders</strong>. With your help, we can reach <strong style={{color:"white"}}>10,000</strong>.
+              Our model improves with every piece of feedback. If we over- or under-estimated your order, tell us . your correction directly shapes the next version. Right now we're validated on <strong style={{color:"white"}}>100+ orders</strong>. With your help, we can reach <strong style={{color:"white"}}>10,000</strong>.
             </p>
             <div style={{display:"flex",gap:"2rem",flexWrap:"wrap"}}>
               {[["100+","orders validated so far"],["10,000","our next milestone"],["Every user","improves accuracy"]].map(([n,l])=>(
@@ -366,7 +366,7 @@ function AboutSection() {
       name:"Manu Paramesh",
       photo:"/manu.jpg",
       role:"Co-founder · ML Engineer",
-      bio:"Manu is passionate about applying machine learning to real-world sustainability challenges. With a background in data and AI engineering, he built PacketWatch to make food delivery's plastic footprint visible — and actionable.",
+      bio:"Manu is passionate about applying machine learning to real-world sustainability challenges. With a background in data and AI engineering, he built PacketWatch to make food delivery's plastic footprint visible . and actionable.",
       tags:["ML Engineering","Sustainability Tech","Data Pipelines"],
       social:"manuparamesh"
     },
@@ -386,7 +386,7 @@ function AboutSection() {
         <div style={{textAlign:"center",marginBottom:"4rem"}}>
           <span style={{fontSize:11,fontWeight:700,color:"#40916c",letterSpacing:"0.1em",textTransform:"uppercase"}}>THE TEAM</span>
           <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:"clamp(28px,4vw,42px)",fontWeight:700,color:"#1b4332",margin:"0.75rem 0 1rem",letterSpacing:"-0.02em"}}>Built by people who care</h2>
-          <p style={{fontSize:16,color:"#52b788",maxWidth:480,margin:"0 auto",lineHeight:1.6}}>PacketWatch started as a personal frustration — now it's a public tool for anyone who wants to understand their food delivery footprint.</p>
+          <p style={{fontSize:16,color:"#52b788",maxWidth:480,margin:"0 auto",lineHeight:1.6}}>PacketWatch started as a personal frustration . now it's a public tool for anyone who wants to understand their food delivery footprint.</p>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(340px,1fr))",gap:"2rem"}}>
           {team.map((p,i)=>(
@@ -442,7 +442,7 @@ function ConnectModal({ onClose, onStart }) {
         </div>
         <div style={{background:"#f0faf4",borderRadius:12,padding:"12px 16px",marginBottom:"1.5rem",display:"flex",gap:10,alignItems:"flex-start"}}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="#2d6a4f" style={{flexShrink:0,marginTop:1}}><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
-          <span style={{fontSize:13,color:"#2d6a4f",lineHeight:1.5}}><strong>Read-only</strong> Gmail access. We never store your emails — only analyse them live in your session.</span>
+          <span style={{fontSize:13,color:"#2d6a4f",lineHeight:1.5}}><strong>Read-only</strong> Gmail access. We never store your emails . only analyse them live in your session.</span>
         </div>
         <div style={{marginBottom:"1.25rem"}}>
           <label style={{fontSize:13,fontWeight:600,color:"#40916c",display:"block",marginBottom:8}}>Your country</label>
@@ -461,7 +461,7 @@ function ConnectModal({ onClose, onStart }) {
                 <span style={{fontSize:18}}>{p.icon}</span>
                 <div style={{flex:1}}>
                   <div style={{fontSize:15,fontWeight:700,color:p.color}}>{p.label}</div>
-                  <div style={{fontSize:11,color:"#95d5b2"}}>{p.soon?"Coming soon — ecommerce":"Order confirmation emails"}</div>
+                  <div style={{fontSize:11,color:"#95d5b2"}}>{p.soon?"Coming soon . ecommerce":"Order confirmation emails"}</div>
                 </div>
               </div>
             ))}
@@ -471,7 +471,7 @@ function ConnectModal({ onClose, onStart }) {
           <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" fill="currentColor"/></svg>
           Sign in with Google &amp; analyse
         </button>
-        <p style={{fontSize:11,color:"#95d5b2",textAlign:"center",marginTop:12}}>Your Gmail credentials are handled directly by Google — we never see your password.</p>
+        <p style={{fontSize:11,color:"#95d5b2",textAlign:"center",marginTop:12}}>Your Gmail credentials are handled directly by Google . we never see your password.</p>
       </div>
     </div>
   )
@@ -481,8 +481,8 @@ function ConnectModal({ onClose, onStart }) {
 function Loading({ progress, message }) {
   const tips = [
     "The average Indian food delivery order generates ~52g of plastic.",
-    "Biryani orders produce the most plastic — raita and pickle covers add up fast.",
-    "Burger chains like Leon's use paper packaging — much lower footprint!",
+    "Biryani orders produce the most plastic . raita and pickle covers add up fast.",
+    "Burger chains like Leon's use paper packaging . much lower footprint!",
     "UK restaurants generate about 35% less plastic per order than Indian ones.",
     "Switching to healthy bowl restaurants could cut your footprint by 60%.",
   ]
@@ -583,7 +583,7 @@ function AnimatedOrderList({ orders }) {
 }
 
 /* ── DASHBOARD ──────────────────────────────────────────────────────────── */
-function Dashboard({ data, onReset }) {
+function Dashboard({ data, onReset, selectedApps = [] }) {
   const s = data.summary || {}
   const monthly = data.monthly_trend || []
   const byType = (data.by_restaurant_type||[]).map(r=>({...r,name:CATS[r.restaurant_type]||r.restaurant_type}))
@@ -594,11 +594,21 @@ function Dashboard({ data, onReset }) {
 
   const perOrderBar = perOrder.map((o,i)=>({name:`#${i+1}`,grams:o.total_grams,restaurant:o.restaurant}))
 
+  const platformNames = selectedApps.map(id => {
+    for (const country of Object.values(PLATFORMS_BY_COUNTRY)) {
+      const p = country.platforms.find(p => p.id === id)
+      if (p) return p.label
+    }
+    return id
+  }).join(" and ")
+
   if(s.total_orders===0) return (
     <div style={{minHeight:"100vh",display:"flex",alignItems:"center",justifyContent:"center",background:"#f8fdf9",flexDirection:"column",gap:"1rem",padding:"2rem",textAlign:"center"}}>
       <LeafLogo size={56}/>
       <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:28,fontWeight:700,color:"#1b4332"}}>No orders found</h2>
-      <p style={{fontSize:15,color:"#52b788",maxWidth:400}}>We couldn't find any order confirmation emails. Make sure you have Zomato order emails in your Gmail inbox.</p>
+      <p style={{fontSize:15,color:"#52b788",maxWidth:420,lineHeight:1.7}}>
+        We searched your Gmail for {platformNames || "the selected platforms"} order confirmation emails but did not find any. Check that you have order emails in your inbox and try again.
+      </p>
       <button onClick={onReset} style={{background:"#1b4332",color:"white",border:"none",borderRadius:100,padding:"12px 28px",fontSize:15,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>Try again</button>
     </div>
   )
@@ -609,7 +619,7 @@ function Dashboard({ data, onReset }) {
       <div style={{background:"#1b4332",padding:"1.25rem 2rem",display:"flex",alignItems:"center",justifyContent:"space-between",position:"sticky",top:0,zIndex:10}}>
         <div style={{display:"flex",alignItems:"center",gap:10}}><LeafLogo size={28}/><span style={{fontFamily:"'Playfair Display',serif",fontSize:18,fontWeight:700,color:"white"}}>PacketWatch</span></div>
         <div style={{display:"flex",gap:12,alignItems:"center"}}>
-          <span style={{fontSize:12,color:"#74c69d"}}>{s.date_from} → {s.date_to}</span>
+          <span style={{fontSize:12,color:"#74c69d"}}>{s.date_from} to {s.date_to}</span>
           <button onClick={onReset} style={{background:"rgba(255,255,255,0.1)",color:"white",border:"1px solid rgba(255,255,255,0.2)",borderRadius:100,padding:"7px 18px",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"inherit"}}>New analysis</button>
         </div>
       </div>
@@ -624,7 +634,7 @@ function Dashboard({ data, onReset }) {
               <span style={{fontFamily:"'Playfair Display',serif",fontSize:60,fontWeight:700,color:"white",lineHeight:1}}>{s.total_kg}</span>
               <span style={{fontSize:22,color:"#95d5b2"}}>kg of plastic</span>
             </div>
-            <div style={{fontSize:14,color:"#74c69d"}}>avg {s.avg_grams_per_order}g per order · that's roughly {Math.round(s.total_kg*200)} plastic bottles worth of waste</div>
+            <div style={{fontSize:14,color:"#74c69d"}}>avg {s.avg_grams_per_order}g per order. That's roughly {Math.round(s.total_kg*200)} plastic bottles worth of waste.</div>
           </div>
         </div>
 
@@ -733,7 +743,7 @@ function Dashboard({ data, onReset }) {
           <div style={{fontSize:13,fontWeight:700,color:"#1b4332",marginBottom:"1rem"}}>Where you can improve</div>
           <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(260px,1fr))",gap:12}}>
             {[
-              ins.worst_category&&{icon:"📦",accent:"#e23744",title:"Biggest offender",text:`${CATS[ins.worst_category]||ins.worst_category} orders average ${Math.round(ins.worst_category_avg_g)}g each — your highest category.`},
+              ins.worst_category&&{icon:"📦",accent:"#e23744",title:"Biggest offender",text:`${CATS[ins.worst_category]||ins.worst_category} orders average ${Math.round(ins.worst_category_avg_g)}g each . your highest category.`},
               ins.potential_saving_g>0&&{icon:"♻️",accent:"#2d6a4f",title:"Potential saving",text:`Switching away from ${CATS[ins.worst_category]||ins.worst_category} could save ~${Math.round(ins.potential_saving_g/1000*10)/10}kg.`},
               ins.best_category&&{icon:"✅",accent:"#52b788",title:"Your greenest choice",text:`${CATS[ins.best_category]||ins.best_category} is your cleanest at just ${Math.round(ins.best_category_avg_g)}g per order.`},
             ].filter(Boolean).map((card,i)=>(
@@ -751,9 +761,8 @@ function Dashboard({ data, onReset }) {
         {/* Feedback */}
         <FeedbackBox country={s.country} totalKg={s.total_kg}/>
 
-        <div style={{borderTop:"1px solid #e9f5ee",paddingTop:"1.5rem",display:"flex",gap:"1.5rem",justifyContent:"center"}}>
-          <a href={`${API}/docs`} target="_blank" rel="noreferrer" style={{fontSize:13,color:"#52b788",fontWeight:500,textDecoration:"none"}}>Public API docs ↗</a>
-          <a href="https://github.com/manuparamesh/packetwatch-api" target="_blank" rel="noreferrer" style={{fontSize:13,color:"#52b788",fontWeight:500,textDecoration:"none"}}>GitHub ↗</a>
+        <div style={{borderTop:"1px solid #e9f5ee",paddingTop:"1.5rem",textAlign:"center"}}>
+          <p style={{fontSize:12,color:"#95d5b2",margin:0}}>Open source · Built by Manu Paramesh and Roopa Narayanan</p>
         </div>
       </div>
     </div>
@@ -820,7 +829,7 @@ function FeedbackBox({ country, totalKg }) {
           <textarea
             value={message}
             onChange={e=>setMessage(e.target.value)}
-            placeholder="e.g. 'The biryani estimate felt high — the restaurant uses steel containers' or 'Missed the plastic straw in the cold coffee order'"
+            placeholder="e.g. 'The biryani estimate felt high . the restaurant uses steel containers' or 'Missed the plastic straw in the cold coffee order'"
             rows={3}
             style={{width:"100%",padding:"12px 14px",borderRadius:12,border:"1.5px solid #e9f5ee",fontSize:14,color:"#1b4332",fontFamily:"'DM Sans',sans-serif",lineHeight:1.6,resize:"vertical",outline:"none",boxSizing:"border-box",marginBottom:"0.75rem"}}
           />
@@ -831,7 +840,7 @@ function FeedbackBox({ country, totalKg }) {
               {status==="sending" ? "Sending..." : "Send feedback"}
             </button>
           </div>
-          {status==="error" && <div style={{fontSize:12,color:"#e23744",marginTop:8}}>Something went wrong — please try again.</div>}
+          {status==="error" && <div style={{fontSize:12,color:"#e23744",marginTop:8}}>Something went wrong . please try again.</div>}
         </>
       )}
     </div>
@@ -922,7 +931,7 @@ export default function App() {
     </>
   )
 
-  if(screen==="dashboard"&&result) return <Dashboard data={result} onReset={()=>{setScreen("landing");setResult(null);setJobId(null)}}/>
+  if(screen==="dashboard"&&result) return <Dashboard data={result} onReset={()=>{setScreen("landing");setResult(null);setJobId(null)}} selectedApps={JSON.parse(sessionStorage.getItem("pw_apps")||'[]')}/>
 
   if(screen==="privacy") return <PrivacyPage onBack={()=>setScreen("landing")}/>
   if(screen==="terms") return <TermsPage onBack={()=>setScreen("landing")}/>
@@ -991,7 +1000,7 @@ function PrivacyPage({ onBack }) {
     },
     {
       title: "Data retention",
-      content: "Email content and personal order data: not retained at all — processed in-session and discarded. Anonymised aggregate statistics (country + total kg): retained indefinitely to power the global map. User feedback: retained to improve our estimation model. You may request deletion of any feedback by contacting us."
+      content: "Email content and personal order data: not retained at all . processed in-session and discarded. Anonymised aggregate statistics (country + total kg): retained indefinitely to power the global map. User feedback: retained to improve our estimation model. You may request deletion of any feedback by contacting us."
     },
     {
       title: "Security",
@@ -1091,7 +1100,7 @@ function TermsPage({ onBack }) {
     },
     {
       title: "Acceptable use",
-      content: "You agree to use PacketWatch only for its intended purpose — estimating personal food delivery plastic waste. You must not attempt to reverse engineer, scrape, or misuse the Service. You must not use the Service for any unlawful purpose."
+      content: "You agree to use PacketWatch only for its intended purpose . estimating personal food delivery plastic waste. You must not attempt to reverse engineer, scrape, or misuse the Service. You must not use the Service for any unlawful purpose."
     },
     {
       title: "No warranties",
@@ -1107,7 +1116,7 @@ function TermsPage({ onBack }) {
     },
     {
       title: "Changes to service",
-      content: "We reserve the right to modify or discontinue the Service at any time without notice. We may update these Terms at any time — continued use of the Service after changes constitutes acceptance."
+      content: "We reserve the right to modify or discontinue the Service at any time without notice. We may update these Terms at any time . continued use of the Service after changes constitutes acceptance."
     },
     {
       title: "Contact",
@@ -1133,7 +1142,7 @@ function TermsPage({ onBack }) {
           <div style={{fontSize:11,fontWeight:700,color:"#40916c",letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:"0.75rem"}}>LEGAL</div>
           <h1 style={{fontFamily:"'Playfair Display',serif",fontSize:"clamp(32px,5vw,48px)",fontWeight:700,color:"#1b4332",margin:"0 0 1rem",letterSpacing:"-0.02em"}}>Terms of Service</h1>
           <p style={{fontSize:15,color:"#52b788",margin:"0 0 0.5rem"}}>Last updated: April 2026</p>
-          <p style={{fontSize:15,color:"#40916c",lineHeight:1.7,margin:0}}>PacketWatch is a free, open-source tool. These terms are intentionally simple — we ask only that you use the service for its intended purpose.</p>
+          <p style={{fontSize:15,color:"#40916c",lineHeight:1.7,margin:0}}>PacketWatch is a free, open-source tool. These terms are intentionally simple . we ask only that you use the service for its intended purpose.</p>
         </div>
 
         <div style={{background:"#1b4332",borderRadius:20,padding:"1.5rem 2rem",marginBottom:"3rem",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))",gap:"1rem"}}>
