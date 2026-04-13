@@ -418,6 +418,74 @@ function AboutSection() {
   )
 }
 
+/* ── SUPPORT SECTION ──────────────────────────────────────────────────────── */
+function SupportSection() {
+  const [copied, setCopied] = useState(false)
+  const UPI_ID = "manuparameshi3@okhdcbank"
+
+  const copyUPI = () => {
+    navigator.clipboard.writeText(UPI_ID).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }
+
+  return (
+    <section style={{padding:"5rem 2rem",background:"#f8fdf9"}}>
+      <div style={{maxWidth:860,margin:"0 auto"}}>
+        <div style={{background:"#1b4332",borderRadius:24,overflow:"hidden",display:"grid",gridTemplateColumns:"1fr 1fr"}} className="photo-grid">
+
+          {/* Left — write-up */}
+          <div style={{padding:"3rem 2.5rem",display:"flex",flexDirection:"column",justifyContent:"center"}}>
+            <div style={{fontSize:11,fontWeight:700,color:"#52b788",letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:"1rem"}}>SUPPORT THE PROJECT</div>
+            <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:"clamp(24px,3vw,34px)",fontWeight:700,color:"white",margin:"0 0 1.25rem",lineHeight:1.2}}>
+              Buy us a coffee ☕
+            </h2>
+            <p style={{fontSize:15,color:"rgba(255,255,255,0.7)",lineHeight:1.8,margin:"0 0 1.5rem"}}>
+              PacketWatch is free, has no ads, and will stay that way. We built this in our spare time because we genuinely care about this problem.
+            </p>
+            <p style={{fontSize:15,color:"rgba(255,255,255,0.7)",lineHeight:1.8,margin:"0 0 2rem"}}>
+              If it was useful to you and you want to help keep the servers running, buying us a coffee goes a long way.
+            </p>
+
+            {/* UPI ID copy */}
+            <div style={{marginBottom:"1.25rem"}}>
+              <div style={{fontSize:12,fontWeight:600,color:"#74c69d",marginBottom:8}}>UPI ID</div>
+              <div style={{display:"flex",alignItems:"center",gap:10,background:"rgba(255,255,255,0.08)",border:"1px solid rgba(255,255,255,0.12)",borderRadius:12,padding:"12px 16px"}}>
+                <span style={{fontSize:14,color:"white",fontWeight:500,flex:1,wordBreak:"break-all"}}>{UPI_ID}</span>
+                <button onClick={copyUPI}
+                  style={{background:copied?"#52b788":"rgba(255,255,255,0.12)",border:"none",borderRadius:8,padding:"6px 12px",color:"white",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"inherit",flexShrink:0,transition:"all 0.2s"}}>
+                  {copied ? "Copied!" : "Copy"}
+                </button>
+              </div>
+            </div>
+
+            <div style={{fontSize:13,color:"#74c69d",lineHeight:1.6}}>
+              Scan the QR code with any UPI app — GPay, PhonePe, Paytm, or your banking app.
+            </div>
+          </div>
+
+          {/* Right — QR code */}
+          <div style={{background:"rgba(0,0,0,0.25)",display:"flex",alignItems:"center",justifyContent:"center",padding:"2.5rem"}}>
+            <div style={{textAlign:"center"}}>
+              <div style={{background:"white",borderRadius:16,padding:"1.25rem",display:"inline-block",marginBottom:"1rem"}}>
+                <img src="/upi-qr.jpg" alt="UPI QR Code" style={{width:200,height:200,objectFit:"cover",borderRadius:8,display:"block"}}/>
+              </div>
+              <div style={{fontSize:13,color:"#95d5b2",fontWeight:500}}>Scan to pay with any UPI app</div>
+              <div style={{display:"flex",justifyContent:"center",gap:10,marginTop:12,flexWrap:"wrap"}}>
+                {["GPay","PhonePe","Paytm","BHIM"].map(app=>(
+                  <span key={app} style={{fontSize:11,color:"#74c69d",background:"rgba(255,255,255,0.08)",borderRadius:100,padding:"4px 10px"}}>{app}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  )
+}
+
 /* ── CONNECT MODAL ────────────────────────────────────────────────────────── */
 function ConnectModal({ onClose, onStart }) {
   const [country, setCountry] = useState("IN")
@@ -1041,6 +1109,7 @@ export default function App() {
       <HowItWorks onConnect={()=>setShowModal(true)}/>
       <GlobalSection globalStats={globalStats}/>
       <AboutSection/>
+      <SupportSection/>
       <footer style={{background:"#1b4332",padding:"2rem 1.5rem",textAlign:"center"}}>
         <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:10,marginBottom:10}}>
           <LeafLogo size={22}/>
